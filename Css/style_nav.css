@@ -99,3 +99,11 @@ nav ul li a:hover {
 .dark-mode .popup {
     background-color: var(--popup-bg-color);
 }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+    background: #6f6e6e ;
+    position: relative;
+}

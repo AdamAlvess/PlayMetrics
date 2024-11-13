@@ -47,3 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Changement d'unité
+document.getElementById("unitSelect").addEventListener("change", function() {
+    const unit = this.value;
+    document.getElementById("speedValue").innerText = `0 ${unit}`;
+});
+
