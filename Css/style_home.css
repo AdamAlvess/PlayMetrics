@@ -1,0 +1,38 @@
+:root {
+    --body-background-color: #ffffff;
+    --body-text-color: #222;
+    --primary-color: #dc3545;
+    --secondary-color: #dc3545;
+    --accent-color: #f1f1f1;
+}
+
+.dark-mode {
+    --body-background-color: #222; 
+    --body-text-color: #ffffff; 
+    --accent-color: #4a4949;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--body-text-color); 
+    background-color: var(--body-background-color);
+}
+
+header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-size: 30px;
+    margin: 0 auto;
+}
+

@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'accueil</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../Css/style_home.css">
+    <link rel="stylesheet" href="../Css/style_nav.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenue sur notre site</h1>
         <nav>
             <ul>
-                <li><a href="home.html">Accueil</a></li>
-                <li><a href="about.html">À propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li id="menuButton">&#9776;</li>
+                <div id="popup" class="popup">
+                    <a href="home.html">Accueil</a>
+                    <a href="about.html">A propos</a>
+                    <a href="contact.html">Contacts</a>
+                    <button id="toggleDarkMode" class="nav-link">Mode sombre</button>
+                </div>
             </ul>
         </nav>
+        <h1>Bienvenue sur PlayMetrics</h1>
     </header>
     <main>
         <section>
@@ -30,5 +35,6 @@
     <footer>
         <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
     </footer>
+    <script src="../JS/script.js"></script>
 </body>
 </html>

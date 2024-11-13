@@ -1,0 +1,101 @@
+:root {
+    --primary-color: #dc3545;
+    --secondary-color: #dc3545;
+    --popup-bg-color: #a31b29;
+}
+
+.dark-mode {
+    --popup-bg-color: #333;
+}
+
+header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #dc3545, #a31b29);
+    color: white;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: linear-gradient(to right, #a31b29, #8c0f1b);
+}
+
+#menuButton {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    margin-right: 20px;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    background-color: var(--popup-bg-color);
+    width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    text-align: left;
+}
+
+.popup a {
+    color: black;
+    padding: 8px 0;
+    text-decoration: none;
+    display: block;
+}
+
+.popup a:hover {
+    background-color: #ddd;
+}
+
+.popup.show {
+    display: block;
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #dc3545, #a31b29);
+    color: white;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    border: none;  
+}
+
+.nav-link:hover {
+    background: linear-gradient(to right, #a31b29, #8c0f1b);
+}
+
+.dark-mode .popup {
+    background-color: var(--popup-bg-color);
+}
