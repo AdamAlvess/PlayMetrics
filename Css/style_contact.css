@@ -1,0 +1,82 @@
+/* Variables pour les couleurs */
+:root {
+    --primary-color: #dc3545;
+    --secondary-color: #a31b29;
+    --background-color: #424242;
+    --text-color: #333;
+    --card-bg-color: #ffffff;
+    --card-border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #424242;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    
+}
+
+h1 {
+    color: black;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+h3{
+    color: white;
+    font-size: 40px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.Box {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+}
+
+.Personne {
+    background-color: #5e5b5b;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    margin: 10px;
+    padding: 10px;
+    width: 220px;
+    max-width: 100%;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    color: #6edff7;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1em;
+    color: white;
+    line-height: 1.4;
+}
+
+p strong {
+    color: #82faa0;
+}
+
+@media (max-width: 768px) {
+    li {
+        width: 100%;
+    }
+}
+

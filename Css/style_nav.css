@@ -9,7 +9,7 @@
 }
 
 header {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(to right, #2196F3, #4CAF50);
     color: white;
     text-align: center;
     padding: 1em;
@@ -60,7 +60,7 @@ nav ul li a:hover {
     position: absolute;
     background-color: var(--popup-bg-color);
     width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
     text-align: left;
@@ -89,7 +89,7 @@ nav ul li a:hover {
     color: white;
     border-radius: 4px;
     transition: background 0.3s ease;
-    border: none;  
+    border: none;
 }
 
 .nav-link:hover {
