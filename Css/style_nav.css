@@ -1,13 +1,3 @@
-:root {
-    --primary-color: #dc3545;
-    --secondary-color: #dc3545;
-    --popup-bg-color: #a31b29;
-}
-
-.dark-mode {
-    --popup-bg-color: #333;
-}
-
 header {
     background: linear-gradient(to right, #2196F3, #4CAF50);
     color: white;
@@ -67,14 +57,14 @@ nav ul li a:hover {
 }
 
 .popup a {
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 8px 0;
     text-decoration: none;
     display: block;
 }
 
 .popup a:hover {
-    background-color: #ddd;
+    background-color: #b9b9b9;
 }
 
 .popup.show {
@@ -98,4 +88,12 @@ nav ul li a:hover {
 
 .dark-mode .popup {
     background-color: var(--popup-bg-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
+    background: #6f6e6e ;
+    position: relative;
 }

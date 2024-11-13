@@ -16,25 +16,32 @@
                     <a href="home.html">Accueil</a>
                     <a href="about.html">A propos</a>
                     <a href="contact.html">Contacts</a>
-                    <button id="toggleDarkMode" class="nav-link">Mode sombre</button>
                 </div>
             </ul>
         </nav>
         <h1>Bienvenue sur PlayMetrics</h1>
     </header>
+
     <main>
-        <section>
-            <h2>Nos Dernières Nouvelles</h2>
-            <p>Découvrez les dernières mises à jour et actualités de notre entreprise.</p>
-        </section>
-        <section>
-            <h2>Nos Services</h2>
-            <p>Nous offrons une gamme complète de services pour répondre à tous vos besoins.</p>
-        </section>
+        <div class="data-display">
+            <label id="unitSelect2">Vitesse :</label>
+            <select id="unitSelect">
+                <option value="km/h">km/h</option>
+                <option value="miles">miles</option>
+            </select>
+            <div id="speedValue">0 km/h</div>
+        </div>
+    
+        <div class="terrain-image">
+            <img src="../assets/terrain.png" alt="Terrain" />
+        </div>
     </main>
+    
+
     <footer>
         <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
     </footer>
+
     <script src="../JS/script.js"></script>
 </body>
 </html>
