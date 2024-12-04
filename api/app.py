@@ -93,7 +93,7 @@ def get_sensor_data():
     except Exception as e:
         return jsonify({"error": "Failed to retrieve data", "details": str(e)}), 500
 
-# Route pour récupérer les logs des requêtes (optionnel)
+# Route pour récupérer les logs des requêtes
 @app.route('/api/sensor-logs', methods=['GET'])
 def get_request_logs():
     try:
@@ -111,6 +111,22 @@ def get_request_logs():
         return jsonify(log_result), 200
     except Exception as e:
         return jsonify({"error": "Failed to retrieve request logs", "details": str(e)}), 500
+
+@app.route('/api/sensors/<int:id>', methods=['DELETE'])
+def delete_sensor_data(id):
+    # Trouver la donnée par ID
+    data = SensorData.query.get(id)
+    if not data:
+        return jsonify({"error": "Data not found"}), 404
+
+    try:
+        # Supprimer la donnée
+        db.session.delete(data)
+        db.session.commit()
+        return jsonify({"message": f"Data with id {id} deleted successfully"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": "Failed to delete data", "details": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

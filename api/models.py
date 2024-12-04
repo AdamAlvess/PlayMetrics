@@ -9,5 +9,5 @@ class SensorData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sensor_type = db.Column(db.String(50), nullable=False)
     value = db.Column(db.Float, nullable=False)
-    unit = db.Column(db.String(20), nullable=True)  # Nouveau champ pour l'unité
+    unit = db.Column(db.String(20), nullable=True)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
