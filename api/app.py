@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from config import Config
 from models import db, SensorData
-
 app = Flask(__name__)
 app.config.from_object(Config)
 
