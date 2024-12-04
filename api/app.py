@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from config import Config
 from models import db, SensorData
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -112,6 +113,7 @@ def get_request_logs():
     except Exception as e:
         return jsonify({"error": "Failed to retrieve request logs", "details": str(e)}), 500
 
+# Route pour supprimer une donnée par ID (via DELETE)
 @app.route('/api/sensors/<int:id>', methods=['DELETE'])
 def delete_sensor_data(id):
     # Trouver la donnée par ID
