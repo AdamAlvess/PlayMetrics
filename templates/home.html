@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/style_home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/style_nav.css') }}">
+    <script src="{{ url_for('static', filename='Js/script.js') }}"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id="menuButton">&#9776;</li>
+                <div id="popup" class="popup">
+                    <a href="home.html">Accueil</a>
+                    <a href="{{ url_for('contact') }}">Contacts</a>
+                    <a href="contact.html">Contacts</a>
+                </div>
+            </ul>
+        </nav>
+        <h1>Bienvenue sur PlayMetrics</h1>
+    </header>
+
+    <main>
+        <div class="data-display">
+            <label id="unitSelect2">Vitesse :</label>
+            <select id="unitSelect">
+                <option value="km/h">km/h</option>
+                <option value="miles">miles</option>
+            </select>
+            <div id="speedValue">0 km/h</div>
+        </div>
+
+        <h1>Données des Capteurs</h1>
+        <div id="sensor-data">
+            {% if data.error %}
+            <p>Erreur : {{ data.error }}</p>
+            {% else %}
+            {% for sensor in data %}
+            <div>
+                <p><strong>ID:</strong> {{ sensor.id }}</p>
+                <p><strong>Type:</strong> {{ sensor.sensor_type }}</p>
+                <p><strong>Valeur:</strong> {{ sensor.value }} {{ sensor.unit }}</p>
+                <p><strong>Horodatage:</strong> {{ sensor.timestamp }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="terrain-image">
+            <img src="../static/assets/terrain.png" alt="Terrain" />
+        </div>
+    </main>
+
+
+    <footer>
+        <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>
