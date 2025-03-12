@@ -1,15 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirection</title>
-    <script type="text/javascript">
-        window.location.href = "Html/home.html";
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏋️ Données PlayMetrics en direct</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    .metric-box {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 1rem;
+      min-width: 150px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .metric-box:hover {
+      transform: scale(1.05);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-    Si vous n'êtes pas redirigé automatiquement, <a href="Html/home.html">cliquez ici</a>.
+
+  <h1>📊 Suivi en temps réel - PlayMetrics</h1>
+
+  <div class="metric-box">
+    <div>📈 Accélérations</div>
+    <div id="accel" class="metric-value">--</div>
+  </div>
+
+  <div class="metric-box">
+    <div>💪 Tractions</div>
+    <div id="tractions" class="metric-value">--</div>
+  </div>
+
+  <div class="metric-box">
+    <div>🙌 Pompes</div>
+    <div id="pompes" class="metric-value">--</div>
+  </div>
+
+  <div class="metric-box">
+    <div>💥Chutes</div>
+    <div id="chutes" class="metric-value">--</div>
+  </div>
+
+  <!-- 🔥 Firebase SDK v9 compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDEnPfEkzjxUTqWfXyVfpkBQhOrLtAgvhk",
+      authDomain: "playmetrics-24a7b.firebaseapp.com",
+      databaseURL: "https://playmetrics-24a7b-default-rtdb.europe-west1.firebasedatabase.app/",
+      projectId: "playmetrics-24a7b",
+      storageBucket: "playmetrics-24a7b.appspot.com",
+      messagingSenderId: "436003019567",
+      appId: "1:436003019567:web:efa8e04f539dbdcbf179ef"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const sensorDataRef = db.ref("sensor-data");
+
+    sensorDataRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      console.log("🔥 Données reçues :", data);
+
+      document.getElementById("accel").textContent = data?.accel ?? "--";
+      document.getElementById("tractions").textContent = data?.tractions ?? "--";
+      document.getElementById("pompes").textContent = data?.pompes ?? "--";
+      document.getElementById("chutes").textContent = data?.chutes ?? "--";
+    });
+  </script>
 </body>
 </html>

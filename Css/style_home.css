@@ -49,10 +49,3 @@ main {
     margin-top: 10px;
 }
 
-.terrain-image img {
-    max-width: 100%;
-    height: 300px;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    margin-top: 20px;
-}
