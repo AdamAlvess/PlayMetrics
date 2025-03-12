@@ -1,36 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-    <link rel="stylesheet" href="../Css/style_home.css">
-    <link rel="stylesheet" href="../Css/style_nav.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏋️ Données PlayMetrics en direct</title>
+  <link rel="stylesheet" href="../Css/style_home.css">
+  <link rel="stylesheet" href="../Css/style_nav.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li id="menuButton">&#9776;</li>
-                <div id="popup" class="popup">
-                    <a href="home.html">Accueil</a>
-                    <a href="about.html">A propos</a>
-                    <a href="contact.html">Contacts</a>
-                </div>
-            </ul>
-        </nav>
-        <h1>Bienvenue sur PlayMetrics</h1>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li id="menuButton">&#9776;</li>
+        <div id="popup" class="popup">
+          <a href="home.html">Accueil</a>
+          <a href="about.html">A propos</a>
+          <a href="contact.html">Contacts</a>
+        </div>
+      </ul>
+    </nav>
+    <h1>Bienvenue sur PlayMetrics</h1>
+  </header>
 
-    <main>
-    
-    </main>
-    
+  <main>
+    <h2>📊 Suivi en temps réel - PlayMetrics</h2>
+    <div class="metrics-container">
+      <div class="metric-box">
+        <div>📈 Accélérations</div>
+        <div id="accel" class="metric-value">--</div>
+      </div>
 
-    <footer>
-        <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
-    </footer>
+      <div class="metric-box">
+        <div>💪 Tractions</div>
+        <div id="tractions" class="metric-value">--</div>
+      </div>
 
-    <script src="../Js/script.js"></script>
+      <div class="metric-box">
+        <div>🙌 Pompes</div>
+        <div id="pompes" class="metric-value">--</div>
+      </div>
+
+      <div class="metric-box">
+        <div>💥 Chutes</div>
+        <div id="chutes" class="metric-value">--</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDEnPfEkzjxUTqWfXyVfpkBQhOrLtAgvhk",
+      authDomain: "playmetrics-24a7b.firebaseapp.com",
+      databaseURL: "https://playmetrics-24a7b-default-rtdb.europe-west1.firebasedatabase.app/",
+      projectId: "playmetrics-24a7b",
+      storageBucket: "playmetrics-24a7b.appspot.com",
+      messagingSenderId: "436003019567",
+      appId: "1:436003019567:web:efa8e04f539dbdcbf179ef"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const sensorDataRef = db.ref("sensor-data");
+
+    sensorDataRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      console.log("🔥 Données reçues :", data);
+
+      document.getElementById("accel").textContent = data?.accel ?? "--";
+      document.getElementById("tractions").textContent = data?.tractions ?? "--";
+      document.getElementById("pompes").textContent = data?.pompes ?? "--";
+      document.getElementById("chutes").textContent = data?.chutes ?? "--";
+    });
+  </script>
+
+  <script src="../Js/script.js"></script>
 </body>
 </html>
