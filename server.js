@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
+const path = require("path");
 
 const serviceAccount = require("./playmetrics-24a7b-firebase-adminsdk-tsmcf-3265079754.json");
 
@@ -13,8 +14,18 @@ const db = admin.database();
 const app = express();
 
 app.use(cors());
-app.use(express.static(__dirname));
 
+// 🔥 Sert les fichiers statiques dans le dossier 'Html' + 'Css' + 'Js'
+app.use(express.static(path.join(__dirname, "Html")));
+app.use("/Css", express.static(path.join(__dirname, "Css")));
+app.use("/Js", express.static(path.join(__dirname, "Js")));
+
+// 📄 Route principale qui sert la page home.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "Html", "home.html"));
+});
+
+// 📡 Route API
 app.get("/metrics", (req, res) => {
   db.ref("sensor-data").once("value", (snapshot) => {
     const data = snapshot.val();
