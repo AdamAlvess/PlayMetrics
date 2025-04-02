@@ -19,7 +19,7 @@ async function init() {
     
     // Utilisation de l'ID pour accéder aux données spécifiques de l'utilisateur
     const db = firebase.database();
-    const userSensorDataRef = db.ref(`sensor-data/${userId}`);  // Utilise l'ID de l'utilisateur pour récupérer ses données
+    const userSensorDataRef = db.ref(`sensor-data/testUser${userId}`);  // Utilise l'ID de l'utilisateur pour récupérer ses données
 
     userSensorDataRef.on("value", (snapshot) => {
       const data = snapshot.val();
