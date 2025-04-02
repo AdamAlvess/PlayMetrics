@@ -4,9 +4,30 @@ const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const admin = require("firebase-admin");
 
-const app = express();
+// 🔥 Configuration Firebase avec variables d'environnement
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+  universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
+};
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: process.env.FIREBASE_DB_URL,
+});
+
 const db = new sqlite3.Database("./users.db");
+const app = express();
 
 // Création de la table des utilisateurs
 db.run(`CREATE TABLE IF NOT EXISTS users (
@@ -88,7 +109,7 @@ app.get("/logout", (req, res) => {
   });
 });
 
-// 🚀 Pages sécurisées (accueil et contact)
+// 🚀 Pages sécurisées
 app.get("/home.html", requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "Html", "home.html"));
 });
@@ -103,6 +124,19 @@ app.get("/user-info", (req, res) => {
     return res.json({ loggedIn: false });
   }
   res.json({ loggedIn: true, username: req.session.user.username });
+});
+
+// 🚀 Route pour fournir la config Firebase au frontend
+app.get("/firebase-config", (req, res) => {
+  res.json({
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DB_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID
+  });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -22,3 +22,24 @@ document.getElementById("unitSelect").addEventListener("change", function() {
     document.getElementById("speedValue").innerText = `0 ${unit}`;
 });
 
+async function init() {
+  const response = await fetch('/firebase-config');
+  const firebaseConfig = await response.json();
+  firebase.initializeApp(firebaseConfig);
+
+  const db = firebase.database();
+  const sensorDataRef = db.ref("sensor-data");
+
+  sensorDataRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    console.log("🔥 Données reçues :", data);
+
+    document.getElementById("accel").textContent = data?.accel ?? "--";
+    document.getElementById("tractions").textContent = data?.tractions ?? "--";
+    document.getElementById("pompes").textContent = data?.pompes ?? "--";
+    document.getElementById("chutes").textContent = data?.chutes ?? "--";
+  });
+}
+  
+init();
+  
