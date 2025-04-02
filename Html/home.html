@@ -14,12 +14,15 @@
         <li id="menuButton">&#9776;</li>
         <div id="popup" class="popup">
           <a href="home.html">Accueil</a>
-          <a href="about.html">A propos</a>
+          <a href="about.html">À propos</a>
           <a href="contact.html">Contacts</a>
+          <a href="/logout">Déconnexion</a>
         </div>
       </ul>
+      <p id="usernameDisplay" style="text-align: right; padding-right: 20px;">👤</p>
     </nav>
     <h1>Bienvenue sur PlayMetrics</h1>
+    <h3 id="username-display"></h3>
   </header>
 
   <main>
@@ -56,6 +59,16 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
   <script>
+    fetch("/user-info")
+      .then(response => response.json())
+      .then(data => {
+        if (!data.loggedIn) {
+          window.location.href = "/login.html"; // Redirige si pas connecté
+        } else {
+          document.getElementById("usernameDisplay").textContent = data.username;
+        }
+      });
+
     const firebaseConfig = {
       apiKey: "AIzaSyDEnPfEkzjxUTqWfXyVfpkBQhOrLtAgvhk",
       authDomain: "playmetrics-24a7b.firebaseapp.com",
