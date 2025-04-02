@@ -1,82 +1,74 @@
 const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
+const path = require("path");
 
-const serviceAccount = require("./playmetrics-24a7b-firebase-adminsdk-tsmcf-3265079754.json");
+// Configuration Firebase avec variables d'environnement
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+  universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
+};
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://playmetrics-24a7b-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: process.env.FIREBASE_DB_URL,
 });
 
 const db = admin.database();
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // important si tu veux lire req.body
-
-// 🌐 Exposer le dossier avec tes fichiers HTML
-const path = require("path");
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "Html")));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Html", "home.html"));
 });
 
-// Endpoint pour obtenir les données d'un utilisateur spécifique
 app.get("/metrics/:userID", (req, res) => {
   const { userID } = req.params;
   db.ref(`sensor-data/${userID}`).once("value", snapshot => {
-    const data = snapshot.val();
-    console.log(`📦 Données reçues pour ${userID}:`, data);
-    res.json(data);
+    res.json(snapshot.val());
   });
 });
 
-// Endpoint pour démarrer l'entraînement
 app.post("/start-training", (req, res) => {
   const { userID } = req.body;
   db.ref(`play/${userID}`).set(true);
   res.send(`🏋️ Entraînement lancé pour ${userID}`);
 });
 
-// Endpoint pour arrêter l'entraînement
 app.post("/stop-training", (req, res) => {
   const { userID } = req.body;
   db.ref(`play/${userID}`).set(false);
   res.send(`🛑 Entraînement arrêté pour ${userID}`);
 });
 
-// --- 🔧 Initialisation utilisateur de test ---
 const TEST_USER_ID = "testUser1";
-
 function initTestUser(userID) {
   db.ref(`sensor-data/${userID}`).once("value", snapshot => {
     if (!snapshot.exists()) {
-      db.ref(`sensor-data/${userID}`).set({
-        accel: 0,
-        chutes: 0,
-        pompes: 0,
-        tractions: 0
-      }, err => {
-        if (!err) console.log(`✅ sensor-data/${userID} initialisé`);
-      });
+      db.ref(`sensor-data/${userID}`).set({ accel: 0, chutes: 0, pompes: 0, tractions: 0 });
     }
   });
-
   db.ref(`play/${userID}`).once("value", snapshot => {
     if (!snapshot.exists()) {
-      db.ref(`play/${userID}`).set(false, err => {
-        if (!err) console.log(`✅ play/${userID} initialisé`);
-      });
+      db.ref(`play/${userID}`).set(false);
     }
   });
 }
-
 initTestUser(TEST_USER_ID);
 
-// Démarrage du serveur
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+  console.log(`🚀 Serveur lancé sur le port ${PORT}`);
 });
