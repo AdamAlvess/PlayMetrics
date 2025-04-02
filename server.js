@@ -29,6 +29,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "Html")));
+app.use(express.static(path.join(__dirname, "Css")));
+app.use(express.static(path.join(__dirname, "Js")));
+
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Html", "home.html"));
