@@ -18,7 +18,7 @@ async function init() {
 
     // 🔥 Récupération des données Firebase pour cet utilisateur
     const db = firebase.database();
-    const userSensorDataRef = db.ref(`sensor-data/${userId}`);
+    const userSensorDataRef = db.ref(`sensor-data/player${userId}`);
 
     userSensorDataRef.on("value", (snapshot) => {
       const data = snapshot.val();
@@ -31,7 +31,7 @@ async function init() {
     });
 
     // Affichage du nom de l'utilisateur dans le header
-    document.getElementById("username-display").textContent = `Bienvenue, ${userId} !`;
+    document.getElementById("username-display").textContent = `Bienvenue, player${userId} !`;
 
   } else {
     console.error("Firebase config invalide ou non récupérée.");
