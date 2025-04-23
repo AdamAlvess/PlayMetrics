@@ -124,8 +124,13 @@ app.get("/user-info", (req, res) => {
   if (!req.session.user) {
     return res.json({ loggedIn: false });
   }
-  res.json({ loggedIn: true, username: req.session.user.username });
+  res.json({
+    loggedIn: true,
+    username: req.session.user.username,
+    id: req.session.user.id,
+  });
 });
+
 
 // 🚀 Route pour fournir la config Firebase au frontend
 app.get("/firebase-config", (req, res) => {

@@ -14,7 +14,7 @@ async function init() {
       return;
     }
 
-    const userId = userData.username; // On récupère le nom d'utilisateur (doit correspondre à la clé Firebase)
+    const userId = userData.id; 
 
     // 🔥 Récupération des données Firebase pour cet utilisateur
     const db = firebase.database();
