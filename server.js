@@ -86,29 +86,21 @@ app.post("/register", async (req, res) => {
 // 🚀 Route de connexion
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log("Tentative de connexion avec :", username, password);
 
   db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => {
-    if (err) {
-      console.error(err);
-      return res.json({ success: false, message: "Erreur serveur." });
-    }
-
-    if (!user) {
-      return res.json({ success: false, message: "Utilisateur non trouvé." });
+    if (err || !user) {
+      return res.status(400).send("❌ Utilisateur non trouvé.");
     }
 
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      return res.json({ success: false, message: "Mot de passe incorrect." });
+      return res.status(400).send("❌ Mot de passe incorrect.");
     }
 
-    req.session.user = { id: user.id, username: user.username };
-    res.json({ success: true });
+    req.session.user = { id: user.id, username: user.username };  // Ajoute l'ID de l'utilisateur
+    res.redirect("/home.html");
   });
 });
-
-
 
 
 // 🚀 Route de déconnexion
