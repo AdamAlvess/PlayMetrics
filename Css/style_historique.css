@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f4f8; /* même fond que les autres pages */
+    background-color: #424242;
     color: #333;
   }
   
@@ -48,5 +48,43 @@ body {
   
   .historique-table tr:hover {
     background-color: #dfe6e9;
+  }
+  #objectifs {
+    background: #eaf2f8;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  
+  #objectifs form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  #objectifs label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  #objectifs input {
+    padding: 5px;
+    width: 80px;
+  }
+  
+  #objectifs button {
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  canvas {
+    max-width: 100%;
+    margin: 20px 0;
   }
   

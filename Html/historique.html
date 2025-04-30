@@ -5,6 +5,7 @@
   <title>Historique des séances</title>
   <link rel="stylesheet" href="/style_historique.css">
   <link rel="stylesheet" href="/style_nav.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -23,11 +24,31 @@
       
     <h1>📚 Historique des séances</h1>
     <h3 id="username-display"></h3>
-
+    
 </header>
-  <main>
+<main>
+    <section id="objectifs">
+      <h2>🎯 Mes Objectifs</h2>
+      <form id="objectif-form">
+        <label>Tractions : <input type="number" id="obj-tractions" min="0" /></label>
+        <label>Pompes : <input type="number" id="obj-pompes" min="0" /></label>
+        <label>Chutes : <input type="number" id="obj-chutes" min="0" /></label>
+        <label>Accélérations : <input type="number" id="obj-accel" min="0" /></label>
+        <button type="submit">💾 Enregistrer</button>
+      </form>
+    </section>
+  
     <div id="historique-container" style="margin-top: 20px;"></div>
+  
+    <section id="charts" style="margin-top: 40px;">
+      <h2>📊 Évolution des performances</h2>
+      <canvas id="chart-tractions"></canvas>
+      <canvas id="chart-pompes"></canvas>
+      <canvas id="chart-chutes"></canvas>
+      <canvas id="chart-accel"></canvas>
+    </section>
   </main>
+  
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
