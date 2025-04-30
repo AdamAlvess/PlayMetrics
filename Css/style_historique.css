@@ -84,7 +84,9 @@ body {
   }
   
   canvas {
-    max-width: 100%;
-    margin: 20px 0;
+    background-color: #2c3e50;
+    border-radius: 10px;
+    padding: 10px;
   }
+  
   

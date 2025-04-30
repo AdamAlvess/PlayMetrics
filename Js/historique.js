@@ -105,11 +105,39 @@ async function loadHistorique() {
               ]
             },
             options: {
-              responsive: true,
-              scales: {
-                y: { beginAtZero: true }
-              }
-            }
+                responsive: true,
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: 'white'
+                    }
+                  }
+                },
+                layout: {
+                  padding: 10
+                },
+                scales: {
+                  x: {
+                    ticks: {
+                      color: 'white'
+                    },
+                    grid: {
+                      color: 'rgba(255,255,255,0.1)'
+                    }
+                  },
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      color: 'white'
+                    },
+                    grid: {
+                      color: 'rgba(255,255,255,0.1)'
+                    }
+                  }
+                },
+                backgroundColor: '#2c3e50'
+              }              
+              
           });
         };
   
@@ -131,7 +159,8 @@ async function loadHistorique() {
       };
       objectifsRef.set(newObj).then(() => {
         alert("🎯 Objectifs mis à jour !");
-        loadHistorique(); // recharge les graphes avec les nouveaux objectifs
+        location.reload(); // recharge toute la page
+
       });
     });
   }
