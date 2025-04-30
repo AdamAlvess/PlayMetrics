@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos - PlayMetrics</title>
+  <link rel="stylesheet" href="/style_about.css">
+  <link rel="stylesheet" href="/style_nav.css">
+  <style>
+    .about-container {
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      color: white;
+      line-height: 1.6;
+    }
+
+    .about-container h2 {
+      color: #6edff7;
+    }
+
+    .about-section {
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li id="menuButton">&#9776;</li>
+        <div id="popup" class="popup">
+          <a href="home.html">Accueil</a>
+          <a href="about.html">À propos</a>
+          <a href="contact.html">Contacts</a>
+          <a href="/logout">Déconnexion</a>
+        </div>
+      </ul>
+      <p id="usernameDisplay" style="text-align: right; padding-right: 20px;">👤</p>
+    </nav>
+    <h1>Bienvenue sur PlayMetrics</h1>
+  </header>
+
+  <main>
+    <div class="about-container">
+      <h2>Des données au service de la performance</h2>
+      <div class="about-section">
+        <p>
+          Aujourd’hui, le sport est bien plus qu’un loisir. Il est un mode de vie, une passion, parfois un métier.
+          Pourtant, le suivi des performances reste souvent réservé aux professionnels dotés de moyens coûteux.
+          C’est là que nous intervenons.
+        </p>
+        <p>
+          Notre mission : <strong>rendre l’analyse des performances accessible</strong> aux sportifs amateurs et semi-professionnels,
+          grâce à une technologie embarquée discrète, efficace et facile à utiliser.
+        </p>
+        <p>
+          Nous développons un <strong>dispositif connecté à porter dans le dos</strong>, qui collecte en temps réel
+          des données précieuses sur le mouvement, l’effort et les performances globales du joueur.
+        </p>
+      </div>
+
+      <h2>Pourquoi ce projet ?</h2>
+      <div class="about-section">
+        <p>
+          Parce que nous croyons que <strong>tout sportif mérite un accompagnement de qualité</strong>, quel que soit son niveau.
+          L’entraînement sans feedback, c’est comme avancer à l’aveugle.
+        </p>
+        <p>
+          Grâce à notre solution, les sportifs peuvent :
+          <ul>
+            <li>📊 Suivre leurs progrès avec précision</li>
+            <li>⚙️ Corriger leurs gestes ou postures</li>
+            <li>📅 Ajuster leur entraînement en fonction de données concrètes</li>
+          </ul>
+        </p>
+      </div>
+
+      <h2>Une technologie au service de l'humain</h2>
+      <div class="about-section">
+        <p>Notre approche est centrée sur l’utilisateur :</p>
+        <ul>
+          <li>✅ <strong>Légèreté</strong> : le système ne gêne pas le mouvement</li>
+          <li>✅ <strong>Fiabilité</strong> : des capteurs calibrés pour des données de qualité</li>
+          <li>✅ <strong>Simplicité</strong> : une application claire pour interpréter les résultats</li>
+        </ul>
+      </div>
+
+      <h2>Une équipe passionnée</h2>
+      <div class="about-section">
+        <p>
+          Derrière ce projet, une équipe motivée par le sport, la technologie et l’innovation.
+          Nous croyons que les nouvelles technologies doivent s’adapter aux vrais besoins des gens, pas l’inverse.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Notre Entreprise. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    fetch("/user-info")
+      .then(response => response.json())
+      .then(data => {
+        if (!data.loggedIn) {
+          window.location.href = "/login.html";
+        } else {
+          document.getElementById("usernameDisplay").textContent = data.username;
+        }
+      });
+  </script>
+</body>
+</html>
