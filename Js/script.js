@@ -41,7 +41,7 @@ async function init() {
       document.getElementById("tractions").textContent = lastSeanceData?.tractions ?? "--";
       document.getElementById("pompes").textContent = lastSeanceData?.pompes ?? "--";
       document.getElementById("chutes").textContent = lastSeanceData?.chutes ?? "--";
-      document.getElementById("seance-number").textContent = lastSeanceKey ?? "--";
+      document.getElementById("seance-number").textContent = parseInt(lastSeanceKey.replace("seance", "")) ?? "--";
     });
 
 
