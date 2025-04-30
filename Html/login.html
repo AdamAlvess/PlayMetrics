@@ -25,6 +25,7 @@
     </main>
 
     <script>
+        // Envoi du formulaire en AJAX
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -36,11 +37,13 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    window.location.href = '/home.html';
-                } else {
-                    document.getElementById('error-message').style.display = 'block';
-                }
+            const errorBox = document.getElementById('error-message');
+            if (data.success) {
+                window.location.href = '/home.html';
+            } else {
+                errorBox.textContent = data.message || 'Erreur de connexion.';
+                errorBox.style.display = 'block';
+            }
             })
             .catch(err => {
                 console.error(err);
