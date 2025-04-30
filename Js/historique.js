@@ -25,7 +25,7 @@ async function loadHistorique() {
       document.getElementById("obj-tractions").value = objectifs.tractions || "";
       document.getElementById("obj-pompes").value = objectifs.pompes || "";
       document.getElementById("obj-chutes").value = objectifs.chutes || "";
-      document.getElementById("obj-accel").value = objectifs.accel || "";
+      document.getElementById("obj-squat").value = objectifs.squat || "";
     });
   
     // === Charger les données de séances ===
@@ -50,7 +50,7 @@ async function loadHistorique() {
           <thead>
             <tr>
               <th>Séance</th>
-              <th>Accélérations</th>
+              <th>Squat</th>
               <th>Tractions</th>
               <th>Pompes</th>
               <th>Chutes</th>
@@ -64,7 +64,7 @@ async function loadHistorique() {
         html += `
           <tr>
             <td>${parseInt(key.replace("seance", ""))}</td>
-            <td>${entry.accel ?? '--'}</td>
+            <td>${entry.squat ?? '--'}</td>
             <td>${entry.tractions ?? '--'}</td>
             <td>${entry.pompes ?? '--'}</td>
             <td>${entry.chutes ?? '--'}</td>
@@ -144,7 +144,7 @@ async function loadHistorique() {
         drawChart("chart-tractions", "Tractions", extract("tractions"), objectifs.tractions);
         drawChart("chart-pompes", "Pompes", extract("pompes"), objectifs.pompes);
         drawChart("chart-chutes", "Chutes", extract("chutes"), objectifs.chutes);
-        drawChart("chart-accel", "Accélérations", extract("accel"), objectifs.accel);
+        drawChart("chart-squat", "Squat", extract("squat"), objectifs.squat);
       });
     });
   
@@ -155,7 +155,7 @@ async function loadHistorique() {
         tractions: parseInt(document.getElementById("obj-tractions").value),
         pompes: parseInt(document.getElementById("obj-pompes").value),
         chutes: parseInt(document.getElementById("obj-chutes").value),
-        accel: parseInt(document.getElementById("obj-accel").value)
+        squat: parseInt(document.getElementById("obj-squat").value)
       };
       objectifsRef.set(newObj).then(() => {
         alert("🎯 Objectifs mis à jour ! Refresh la page pour voir les modifs");

@@ -37,7 +37,7 @@ async function init() {
 
       const lastSeanceData = data[lastSeanceKey];
 
-      document.getElementById("accel").textContent = lastSeanceData?.accel ?? "--";
+      document.getElementById("squat").textContent = lastSeanceData?.squat ?? "--";
       document.getElementById("tractions").textContent = lastSeanceData?.tractions ?? "--";
       document.getElementById("pompes").textContent = lastSeanceData?.pompes ?? "--";
       document.getElementById("chutes").textContent = lastSeanceData?.chutes ?? "--";
