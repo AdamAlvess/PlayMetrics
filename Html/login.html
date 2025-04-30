@@ -2,16 +2,52 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Connexion - PlayMetrics</title>
+    <link rel="stylesheet" href="/style_home.css">
+    <link rel="stylesheet" href="/style_login.css">
 </head>
 <body>
-    <h2>Connexion</h2>
-    <form action="/login" method="POST">
-        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-        <input type="password" name="password" placeholder="Mot de passe" required>
-        <button type="submit">Se connecter</button>
-    </form>
-    <p>Pas encore inscrit ? <a href="register.html">Inscription</a></p>
+    <main class="login-container">
+        <h2>🔐 Connexion à PlayMetrics</h2>
+
+        <!-- Zone de message d'erreur -->
+        <div id="error-message" class="error-message" style="display: none;">
+            Identifiant ou mot de passe incorrect.
+        </div>
+
+        <form id="login-form">
+            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+
+        <p class="register-link">Pas encore inscrit ? <a href="register.html">Créer un compte</a></p>
+    </main>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/login', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/home.html';
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('error-message').textContent = 'Erreur de connexion.';
+                document.getElementById('error-message').style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
