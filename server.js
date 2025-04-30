@@ -86,9 +86,15 @@ app.post("/register", async (req, res) => {
 // 🚀 Route de connexion
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
+  console.log("Tentative de connexion avec :", username, password);
 
   db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => {
-    if (err || !user) {
+    if (err) {
+      console.error(err);
+      return res.json({ success: false, message: "Erreur serveur." });
+    }
+
+    if (!user) {
       return res.json({ success: false, message: "Utilisateur non trouvé." });
     }
 
@@ -101,6 +107,7 @@ app.post("/login", (req, res) => {
     res.json({ success: true });
   });
 });
+
 
 
 
