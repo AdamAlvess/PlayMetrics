@@ -1,0 +1,81 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #2980b9;
+  }
+  
+  main {
+    padding: 30px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  #historique-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  #historique-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #historique-container li {
+    background-color: #ecf0f1;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 6px solid #3498db;
+    transition: transform 0.2s;
+  }
+  
+  #historique-container li:hover {
+    transform: translateX(5px);
+  }
+  
+  strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-size: 1.1em;
+  }
+  
+  .historique-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .historique-table th,
+  .historique-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .historique-table thead {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .historique-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  

@@ -11,6 +11,8 @@ async function loadHistorique() {
       return;
     }
   
+    document.getElementById("username-display").textContent = `👤 ${userData.username}`;
+  
     const userId = userData.id;
     const db = firebase.database();
     const ref = db.ref(`sensor-data/player${userId}`);
@@ -30,21 +32,34 @@ async function loadHistorique() {
         return na - nb;
       });
   
-      let html = "<ul>";
+      let html = `
+        <table class="historique-table">
+          <thead>
+            <tr>
+              <th>Séance</th>
+              <th>Accélérations</th>
+              <th>Tractions</th>
+              <th>Pompes</th>
+              <th>Chutes</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+  
       keys.forEach(key => {
         const entry = data[key];
         html += `
-          <li>
-            <strong>Séance ${parseInt(key.replace("seance", ""))} :</strong>
-            Accélérations : ${entry.accel ?? '--'}, 
-            Tractions : ${entry.tractions ?? '--'}, 
-            Pompes : ${entry.pompes ?? '--'}, 
-            Chutes : ${entry.chutes ?? '--'}
-          </li>
+          <tr>
+            <td>${parseInt(key.replace("seance", ""))}</td>
+            <td>${entry.accel ?? '--'}</td>
+            <td>${entry.tractions ?? '--'}</td>
+            <td>${entry.pompes ?? '--'}</td>
+            <td>${entry.chutes ?? '--'}</td>
+          </tr>
         `;
       });
-      html += "</ul>";
   
+      html += "</tbody></table>";
       container.innerHTML = html;
     });
   }
