@@ -22,13 +22,25 @@ async function init() {
 
     userSensorDataRef.on("value", (snapshot) => {
       const data = snapshot.val();
-      console.log("🔥 Données reçues de l'utilisateur :", data);
 
-      document.getElementById("accel").textContent = data?.accel ?? "--";
-      document.getElementById("tractions").textContent = data?.tractions ?? "--";
-      document.getElementById("pompes").textContent = data?.pompes ?? "--";
-      document.getElementById("chutes").textContent = data?.chutes ?? "--";
+      if (!data) return;
+
+      const seances = Object.keys(data);
+      const lastSeanceKey = seances.sort((a, b) => {
+        const numA = parseInt(a.replace('seance', ''));
+        const numB = parseInt(b.replace('seance', ''));
+        return numB - numA;
+      })[0];
+
+      const lastSeanceData = data[lastSeanceKey];
+
+      document.getElementById("accel").textContent = lastSeanceData?.accel ?? "--";
+      document.getElementById("tractions").textContent = lastSeanceData?.tractions ?? "--";
+      document.getElementById("pompes").textContent = lastSeanceData?.pompes ?? "--";
+      document.getElementById("chutes").textContent = lastSeanceData?.chutes ?? "--";
+      document.getElementById("seance-number").textContent = lastSeanceKey ?? "--";
     });
+
 
     // Affichage du nom de l'utilisateur dans le header
     document.getElementById("username-display").textContent = `Bienvenue, player${userId} !`;
