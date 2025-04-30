@@ -11,6 +11,17 @@ body {
     padding: 20px;
     text-align: center;
   }
+  h2 {
+    color: #6edff7;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  h3 {
+    color: white;
+    font-size: 40px;
+    margin-top: 15px;
+    text-align: center;
+  }
   
   .username-nav {
     font-size: 0.9rem;

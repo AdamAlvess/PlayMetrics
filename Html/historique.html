@@ -33,7 +33,7 @@
         <label>Tractions : <input type="number" id="obj-tractions" min="0" /></label>
         <label>Pompes : <input type="number" id="obj-pompes" min="0" /></label>
         <label>Chutes : <input type="number" id="obj-chutes" min="0" /></label>
-        <label>Accélérations : <input type="number" id="obj-accel" min="0" /></label>
+        <label>Squat : <input type="number" id="obj-accel" min="0" /></label>
         <button type="submit">💾 Enregistrer</button>
       </form>
     </section>
@@ -42,9 +42,13 @@
   
     <section id="charts" style="margin-top: 40px;">
       <h2>📊 Évolution des performances</h2>
+      <h3>Graphiques des tractions</h3>
       <canvas id="chart-tractions"></canvas>
+      <h3>Graphiques des pompes</h3>
       <canvas id="chart-pompes"></canvas>
+      <h3>Graphiques des squats</h3>
       <canvas id="chart-chutes"></canvas>
+      <h3>Graphiques des chutes</h3>
       <canvas id="chart-accel"></canvas>
     </section>
   </main>

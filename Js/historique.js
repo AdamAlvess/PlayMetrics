@@ -158,9 +158,8 @@ async function loadHistorique() {
         accel: parseInt(document.getElementById("obj-accel").value)
       };
       objectifsRef.set(newObj).then(() => {
-        alert("🎯 Objectifs mis à jour !");
-        location.reload(); // recharge toute la page
-
+        alert("🎯 Objectifs mis à jour ! Refresh la page pour voir les modifs");
+        location.reload();
       });
     });
   }
