@@ -25,12 +25,15 @@ async function init() {
 
       if (!data) return;
 
-      const seances = Object.keys(data);
+      const seances = Object.keys(data).filter(key => key.startsWith("seance"));
+      if (seances.length === 0) return;
+
       const lastSeanceKey = seances.sort((a, b) => {
-        const numA = parseInt(a.replace('seance', ''));
-        const numB = parseInt(b.replace('seance', ''));
+        const numA = parseInt(a.replace("seance", ""));
+        const numB = parseInt(b.replace("seance", ""));
         return numB - numA;
       })[0];
+
 
       const lastSeanceData = data[lastSeanceKey];
 

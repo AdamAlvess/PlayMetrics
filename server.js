@@ -97,7 +97,7 @@ app.post("/login", (req, res) => {
       return res.status(400).send("❌ Mot de passe incorrect.");
     }
 
-    req.session.user = { id: user.id, username: user.username };  // Ajoute l'ID de l'utilisateur
+    req.session.user = { id: user.id, username: user.username, };  // Ajoute l'ID de l'utilisateur
     res.redirect("/home.html");
   });
 });
