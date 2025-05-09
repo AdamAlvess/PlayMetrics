@@ -110,8 +110,12 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  width: 100%;
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto; 
+  display: block;
 }
+
 
 /* Popup de confirmation */
 .confirmation-popup {
